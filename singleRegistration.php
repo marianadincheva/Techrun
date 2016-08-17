@@ -9,7 +9,7 @@
 		<nav>
 			<a href="singleRegistration.php">Индивидуална регистрация</a> |
 			<a href="companyRegistration.php">Регистрация на отбор</a> |
-			<a href="contact.php">Контакти</a> |
+			<a href="contactForm.php">Контакти</a> |
 			<a href="rankings.php">Класиране</a>
 		</nav>
 		
@@ -36,7 +36,7 @@
 					
 					while ($row = mysql_fetch_array($companies)){
 				?>
-	   				<option> <?php print $row['company'] ?> </option>
+					<option> <?php print $row['company'] ?> </option>
 				
 				<?php
 					}

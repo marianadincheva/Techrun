@@ -9,12 +9,12 @@
 		<nav>
 			<a href="singleRegistration.php">Индивидуална регистрация</a> |
 			<a href="companyRegistration.php">Регистрация на отбор</a> |
-			<a href="contact.php">Контакти</a> |
+			<a href="contactForm.php">Контакти</a> |
 			<a href="rankings.php">Класиране</a>
 		</nav>
 		
 		<p>Регистрация на отбор</p>
-		<form action="teamRegistrationForm.php" method="post">
+		<form action="companyRegistration.php" method="post">
 			Име на фирмата/организацията: 
 			<input type="text" name="companyName"><br>
 			Email:
@@ -31,9 +31,17 @@
 </html>
 
 <?php
-	if(isset($_POST['submit'])){
-		include 'connectDB.php'; 
-		mysql_query("INSERT INTO `companies` (`name`, `email`, `phone`, `website`) 
-			VALUES ('".$_POST['companyName']."', '".$_POST['email']."', '".$_POST['phone']."', '".$_POST['website']."')");
+	require_once('connectDB.php');
+	if(isset($_POST['submit'])) {
+		//@check if empty;
+		$db = new Database();
+		//@combine columns and values
+		/*[
+			'name' => $_POST['companyName], 
+			...
+		]*/
+		$columns = ["name", "email", "phone", "website"];
+		$values = [$_POST['companyName'], $_POST['email'], $_POST['phone'], $_POST['website']];
+		$db->insert("companies", $columns, $values);
 	}
 ?>
