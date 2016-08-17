@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `techrun`
+-- Database: `techrun`	//@ Only companies table is exported, I need the whole Database. Click on the database from the list on the left side of the screen in phpmyadmin before clicking export.
 --
 
 -- --------------------------------------------------------

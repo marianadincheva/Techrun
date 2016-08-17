@@ -27,6 +27,7 @@
 </html>
 
 <?php 
+//@ this file should be called contactForm.php
 	if(isset($_POST['submit'])){
 		include 'connectDB.php';
 		$name = $_POST['name'];
