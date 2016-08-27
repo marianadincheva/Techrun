@@ -2,7 +2,7 @@
 	class Database {
 		const HOST 		= "localhost";
 		const USERNAME 	= "root";
-		const PASSWORD 	= "mimi1024@";
+		const PASSWORD 	= "";
 		const BASE 		= "techrun";
 		const EMAIL 	= "mimi_dincheva@abv.bg";
 		
@@ -19,7 +19,7 @@
 				die ("Can\'t use $database : " . mysqli_select_db_error());
 			} 
 
-			mysqli_set_charset('utf8');
+			mysqli_set_charset($this->conn,"utf8");
 		}
 
 		public function sendQuery($query) {
