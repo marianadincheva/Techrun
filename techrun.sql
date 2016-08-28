@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Aug 17, 2016 at 04:55 PM
--- Server version: 5.5.50-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.17
+-- Host: 127.0.0.1
+-- Generation Time: 
+-- Версия на сървъра: 10.1.13-MariaDB
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `techrun`
@@ -23,27 +23,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `companies`
+-- Структура на таблица `companies`
 --
 
-CREATE TABLE IF NOT EXISTS `companies` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `companies` (
+  `company_id` int(11) NOT NULL,
   `name` text CHARACTER SET utf8 NOT NULL,
-  `email` text CHARACTER SET utf8 NOT NULL,
-  `phone` text CHARACTER SET utf8 NOT NULL,
-  `website` text CHARACTER SET utf8 NOT NULL,
-  `logo` text CHARACTER SET utf8 NOT NULL,
-  `runners` int(11) NOT NULL,
-  `points` int(11) NOT NULL,
-  `races` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `email` text CHARACTER SET utf8,
+  `phone` text CHARACTER SET utf8,
+  `website` text CHARACTER SET utf8,
+  `logo` text CHARACTER SET utf8,
+  `runners` int(11) DEFAULT NULL,
+  `points` int(11) DEFAULT NULL,
+  `races` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `companies`
+-- Схема на данните от таблица `companies`
 --
 
-INSERT INTO `companies` (`id`, `name`, `email`, `phone`, `website`, `logo`, `runners`, `points`, `races`) VALUES
+INSERT INTO `companies` (`company_id`, `name`, `email`, `phone`, `website`, `logo`, `runners`, `points`, `races`) VALUES
 (1, 'SAP', 'sap@abv.bg', '0866955427', 'www.sap-labs.de', '', 5, 200, 2),
 (2, 'Musala', 'musala@abv.bg', '0882755233', 'www.musala.com', '', 10, 240, 2),
 (3, 'TechHuddle', 'techhuddle@abv.bg', '0886266955', 'www.techhuddle.com', '', 7, 300, 3),
@@ -53,85 +52,125 @@ INSERT INTO `companies` (`id`, `name`, `email`, `phone`, `website`, `logo`, `run
 -- --------------------------------------------------------
 
 --
--- Table structure for table `races`
+-- Структура на таблица `races`
 --
 
-CREATE TABLE IF NOT EXISTS `races` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `races` (
+  `race_id` int(11) NOT NULL,
   `name` text NOT NULL,
   `runners` int(11) NOT NULL,
   `distance` double NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  `sex` enum('M','F') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `races`
+-- Схема на данните от таблица `races`
 --
 
-INSERT INTO `races` (`id`, `name`, `runners`, `distance`) VALUES
-(1, 'Marathon Stara Zagora', 330, 21),
-(2, 'Marathon Pancharevo', 300, 42),
-(3, 'Marathon Pleven', 50, 21),
-(4, 'Vitosha 100', 1000, 94),
-(5, 'Sofia morning run', 500, 20);
+INSERT INTO `races` (`race_id`, `name`, `runners`, `distance`, `sex`) VALUES
+(1, 'Pancharevo', 0, 10, 'M'),
+(2, 'Pancharevo', 0, 10, 'F'),
+(3, 'Pancharevo', 0, 21.1, 'M'),
+(4, 'Pancharevo', 0, 21.1, 'F'),
+(5, 'Pancharevo', 0, 43, 'M'),
+(6, 'Pancharevo', 0, 43, 'F'),
+(7, 'Kalandja', 0, 11, 'M'),
+(8, 'Kalandja', 0, 11, 'F'),
+(9, 'Kalandja', 0, 21.3, 'M'),
+(10, 'Kalandja', 0, 21.3, 'F'),
+(11, 'Kalandja', 0, 43, 'M'),
+(12, 'Kalandja', 0, 43, 'F'),
+(13, 'Businessrun', 5, 4, 'M'),
+(14, 'Businessrun', 2, 4, 'F');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `results`
+-- Структура на таблица `results`
 --
 
-CREATE TABLE IF NOT EXISTS `results` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `results` (
+  `id` int(11) NOT NULL,
   `race_id` int(11) NOT NULL,
-  `runner_id` int(11) NOT NULL,
-  `time` time NOT NULL,
-  `ranking` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `results`
---
-
-INSERT INTO `results` (`id`, `race_id`, `runner_id`, `time`, `ranking`) VALUES
-(1, 2, 1, '02:35:25', 30),
-(2, 5, 4, '02:15:00', 41),
-(3, 3, 3, '03:45:00', 50),
-(4, 1, 5, '02:00:55', 10),
-(5, 4, 2, '03:45:00', 26);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `runners`
---
-
-CREATE TABLE IF NOT EXISTS `runners` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` text NOT NULL,
   `last_name` text NOT NULL,
-  `birth_date` date NOT NULL,
+  `time` time NOT NULL,
+  `place` int(11) NOT NULL,
+  `sex` enum('M','F') NOT NULL,
+  `email` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура на таблица `runners`
+--
+
+CREATE TABLE `runners` (
+  `id` int(11) NOT NULL,
+  `first_name` text NOT NULL,
+  `last_name` text NOT NULL,
+  `birth_date` date DEFAULT NULL,
   `sex` enum('male','female') NOT NULL,
   `email` text NOT NULL,
-  `phone` text NOT NULL,
-  `company` text NOT NULL,
-  `points` int(11) NOT NULL,
-  `races` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  `phone` text,
+  `company` text,
+  `points` int(11) DEFAULT NULL,
+  `races` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `runners`
+-- Indexes for dumped tables
 --
 
-INSERT INTO `runners` (`id`, `first_name`, `last_name`, `birth_date`, `sex`, `email`, `phone`, `company`, `points`, `races`) VALUES
-(1, 'Иван ', 'Иванов ', '1988-02-28', 'male', 'ivanovf@abv.bg', '0887569657', 'Musala', 100, '2'),
-(2, 'Георги ', 'Георгиев', '1990-05-17', 'male', 'georgi@abv.bg', '0887563954', 'Musala', 86, '1'),
-(3, 'Димо', 'Димов', '1992-01-29', 'male', 'dimo@abv.bg', '0882359686', 'TechHuddle', 120, '2'),
-(4, 'Мария', 'Иванова', '1994-12-20', 'female', 'maria@abv.bg', '0885423635', 'Axway Bg', 85, '1'),
-(5, 'Василена ', 'Красимирова', '1987-12-15', 'female', 'vasilena@abv.bg', '0896123656', 'SAP', 90, '1');
+--
+-- Indexes for table `companies`
+--
+ALTER TABLE `companies`
+  ADD PRIMARY KEY (`company_id`);
 
+--
+-- Indexes for table `races`
+--
+ALTER TABLE `races`
+  ADD PRIMARY KEY (`race_id`);
+
+--
+-- Indexes for table `results`
+--
+ALTER TABLE `results`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `runners`
+--
+ALTER TABLE `runners`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `companies`
+--
+ALTER TABLE `companies`
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `races`
+--
+ALTER TABLE `races`
+  MODIFY `race_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `results`
+--
+ALTER TABLE `results`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `runners`
+--
+ALTER TABLE `runners`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

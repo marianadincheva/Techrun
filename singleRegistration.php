@@ -1,3 +1,9 @@
+<?php
+	include 'Database.php';
+	$db = new Database;
+	$query = "SELECT DISTINCT `name` FROM `companies` ORDER BY `name` ASC"; //@todo remove SQL
+	$companies = $db->sendQuery($query);
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,43 +20,27 @@
 		</nav>
 		
 		<p>Индивидуален участник</p>
-		<form action="singleRegistration.php" method="post">
+		<form action="singleRegistrationProcess.php" method="post">
 			Име:
-			<input type="text" name="firstName"><br>
+			<input type="text" name="firstName" value="Hristo"><br>
 			Фамилия:
-			<input type="text" name="lastName"><br>
+			<input type="text" name="lastName" value="Tsvetkov"><br>
 			Дата на раждане: 
-			<input type="date" name="bday"><br>
+			<input type="date" name="bday" value="12.12.2006"><br>
 			Пол:
-			<input type="radio" name="sex" value="male">Мъж
-			<input type="radio" name="sex" value="female">Жена<br>
+			<input type="radio" name="sex" value="M">Мъж
+			<input type="radio" name="sex" value="F">Жена<br>
 			Email:
-			<input type="email" name="email"><br>
+			<input type="email" name="email" value="hristo@email.com"><br>
 			Телефон:
-			<input type="text" name="phone"><br>
+			<input type="text" name="phone" value="012345"><br>
 			Компания:
-			<select>
-				<?php
-					include 'connectDB.php';
-					$companies = mysql_query("SELECT DISTINCT `company` FROM `runners` ORDER BY `company`");
-					
-					while ($row = mysql_fetch_array($companies)){
-				?>
-					<option> <?php print $row['company'] ?> </option>
-				
-				<?php
-					}
-				?>			
+			<select name="companyName">
+				<?php foreach ($companies as $company){ ?>
+					<option> <?php print $company['name'] ?> </option>
+				<?php } ?>			
 			</select><br>	
 			<input type="submit" name="submit" value="Изпращане">
 		</form>
 	</body>
 </html>
-
-<?php
-	if(isset($_POST['submit'])){
-		include 'connectDB.php'; 
-		mysql_query("INSERT INTO `runners` (`first_name`, `last_name`, `birth_date`, `sex`, `email`, `phone`, `company`) 
-			VALUES ('".$_POST['firstName']."', '".$_POST['lastName']."', '".$_POST['bday']."', '".$_POST['sex']."', '".$_POST['email']."', '".$_POST['phone']."', '".$_POST['companyName']."')" );
-	}
-?>
