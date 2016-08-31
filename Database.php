@@ -28,10 +28,15 @@
 			return $this->sendQuery($query);
 		}
 
-		public function selectFunction($table, $column, $function, $where = []) {
-			$query = "SELECT ".$function."(`".$column."`) AS `".$function."` FROM `".$table."` WHERE 1 ".$this->generateWhere($where);
+		public function selectFunction($table, $columns, $where = []) {
+			$select = "";
+			foreach ($columns as $column => $function) {
+				$select .= $function."(`".$column."`) AS `".$column."`, ";
+			}
+			$select = substr($select, 0 , -2);
+			$query = "SELECT ".$select." FROM `".$table."` WHERE 1 ".$this->generateWhere($where);
 			$result = $this->sendQuery($query);
-			return is_array($result) ? array_pop($result)[$function] : $result;
+			return is_array($result) ? array_pop($result) : $result;
 		}
 
 		public function insert($table, $values) {
