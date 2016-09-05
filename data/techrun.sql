@@ -38,17 +38,6 @@ CREATE TABLE `companies` (
   `races` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Схема на данните от таблица `companies`
---
-
-INSERT INTO `companies` (`company_id`, `name`, `email`, `phone`, `website`, `logo`, `runners`, `points`, `races`) VALUES
-(1, 'SAP', 'sap@abv.bg', '0866955427', 'www.sap-labs.de', '', 5, 200, 2),
-(2, 'Musala', 'musala@abv.bg', '0882755233', 'www.musala.com', '', 10, 240, 2),
-(3, 'TechHuddle', 'techhuddle@abv.bg', '0886266955', 'www.techhuddle.com', '', 7, 300, 3),
-(4, 'Nemetschek Bg', 'nemetschek@abv.bg', '0889578085', 'www.nemetschek.com', '', 3, 230, 1),
-(5, 'Axway Bg', 'axway@abv.bg', '0888076565', 'www.axway.com', '', 6, 240, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -68,7 +57,7 @@ CREATE TABLE `races` (
 --
 
 INSERT INTO `races` (`race_id`, `name`, `runners`, `distance`, `sex`) VALUES
-(1, 'Pancharevo', 115, 10, 'M'),
+(1, 'Pancharevo', 0, 10, 'M'),
 (2, 'Pancharevo', 97, 10, 'F'),
 (3, 'Pancharevo', 65, 21.1, 'M'),
 (4, 'Pancharevo', 20, 21.1, 'F'),
@@ -90,7 +79,7 @@ INSERT INTO `races` (`race_id`, `name`, `runners`, `distance`, `sex`) VALUES
 --
 
 CREATE TABLE `results` (
-  `id` int(11) NOT NULL,
+  `result_id` int(11) NOT NULL,
   `race_id` int(11) NOT NULL,
   `first_name` text NOT NULL,
   `last_name` text NOT NULL,
@@ -104,7 +93,7 @@ CREATE TABLE `results` (
 -- Схема на данните от таблица `results`
 --
 
-INSERT INTO `results` (`id`, `race_id`, `first_name`, `last_name`, `time`, `place`, `sex`, `email`) VALUES
+INSERT INTO `results` (`result_id`, `race_id`, `first_name`, `last_name`, `time`, `place`, `sex`, `email`) VALUES
 (1, 14, 'Hristina', 'Kozareva', '00:14:31', 1, 'F', 'hkozareva-leikeb@luxoft.com'),
 (2, 14, 'Desislava', 'Hristova', '00:16:20', 2, 'F', 'desislava.hristova@ontotext.com'),
 (3, 14, 'Galina', 'Nencheva', '00:17:17', 3, 'F', 'galina.nencheva@yrlegal.com'),
@@ -430,7 +419,7 @@ INSERT INTO `results` (`id`, `race_id`, `first_name`, `last_name`, `time`, `plac
 (323, 13, 'Stanimir', 'Kostadinov', '00:14:38', 16, 'M', 'stanimir@bio-bio-bulgaria.com'),
 (324, 13, 'Kiril', 'Georgiev', '00:14:40', 17, 'M', 'kiril.georgiev@tungsten-network.com'),
 (325, 13, 'Kamen', 'Tonchev', '00:14:41', 18, 'M', 'kamentonchev2@gmail.com'),
-(326, 13, 'Hristo', 'Tsvetkov', '00:14:41', 19, 'M', 'hristo.tsvetkov@techhuddle.com'),
+(326, 13, 'Hristo', 'Tsvetkov', '00:14:41', 19, 'M', 'dreben_ji_1994@abv.bg'),
 (327, 13, 'Marin', 'Minchev', '00:14:42', 20, 'M', 'marin.minchev@hpe.com'),
 (328, 13, 'Kiril', 'Stoyanov', '00:14:53', 21, 'M', 'kiril.stoyanov@sap.com'),
 (329, 13, 'Nikolay', 'Kabadzhov', '00:15:01', 22, 'M', 'nikolay.kabadzhov@sap.com'),
@@ -729,7 +718,7 @@ INSERT INTO `results` (`id`, `race_id`, `first_name`, `last_name`, `time`, `plac
 (622, 13, 'Ventsislav', 'Dimitrov', '00:18:58', 315, 'M', 'ventsislav.dimitrov@emerchantpay.com'),
 (623, 13, 'Rosen', 'Milanov', '00:18:59', 316, 'M', ''),
 (624, 13, 'GEORGI', 'STILYANOV', '00:18:59', 317, 'M', 'georgi.stilyanov@gmail.com');
-INSERT INTO `results` (`id`, `race_id`, `first_name`, `last_name`, `time`, `place`, `sex`, `email`) VALUES
+INSERT INTO `results` (`result_id`, `race_id`, `first_name`, `last_name`, `time`, `place`, `sex`, `email`) VALUES
 (625, 13, 'Rumen', 'Valkov', '00:19:00', 318, 'M', 'rumen.valkov@provident.bg'),
 (626, 13, 'Filip', 'Sotirov', '00:19:00', 319, 'M', 'fipo@receipt-bank.com'),
 (627, 13, 'Konstantin', 'Videnov', '00:19:00', 320, 'M', 'kvidenov@cokecce.com'),
@@ -1375,7 +1364,7 @@ INSERT INTO `results` (`id`, `race_id`, `first_name`, `last_name`, `time`, `plac
 (1270, 1, 'Milko', 'Todorov', '00:46:16', 14, 'M', 'todorov.milko88@gmail.com'),
 (1271, 1, 'Petar', 'Iliev', '00:46:39', 15, 'M', ''),
 (1272, 1, 'Deian', 'Petkov', '00:46:52', 16, 'M', 'deian@maquett.com');
-INSERT INTO `results` (`id`, `race_id`, `first_name`, `last_name`, `time`, `place`, `sex`, `email`) VALUES
+INSERT INTO `results` (`result_id`, `race_id`, `first_name`, `last_name`, `time`, `place`, `sex`, `email`) VALUES
 (1273, 1, 'Rosen', 'Gurgov', '00:47:00', 17, 'M', 'rossen.gurgov@hpe.com'),
 (1274, 1, 'Ivo', 'Zlatev', '00:47:06', 18, 'M', 'ivo.zlatev@vivacom.bg'),
 (1275, 1, 'Nedelcho', 'Penev', '00:47:07', 19, 'M', 'pylon@abv.bg'),
@@ -1430,7 +1419,7 @@ INSERT INTO `results` (`id`, `race_id`, `first_name`, `last_name`, `time`, `plac
 (1324, 1, 'Anastas', 'Kalaidjiev', '00:55:07', 68, 'M', 'anastas.kalaidjiev@hpe.com'),
 (1325, 1, 'Georgi', 'Georgiev', '00:55:19', 69, 'M', 'elbi10@abv.bg'),
 (1326, 1, 'Doichin', 'Marinov', '00:55:42', 70, 'M', 'dmarinov@hpe.com'),
-(1327, 1, 'Nikolay', 'Petrov', '00:55:53', 71, 'M', 'nikolay_petrov@mail.bg'),
+(1327, 1, 'Nikolay', 'Petrov', '00:55:53', 71, 'M', 'nikolay.petrov@techhuddle.com'),
 (1328, 1, 'Nikola', 'Radoev', '00:56:26', 72, 'M', 'nckl.irox@gmail.com'),
 (1329, 1, 'Tamir', 'Shabat', '00:56:31', 73, 'M', 'shabatt@pepsiint.bg'),
 (1330, 1, 'Leonid', 'Seliktar', '00:56:56', 74, 'M', 'leonidseliktar@gmail.com'),
@@ -1690,14 +1679,14 @@ INSERT INTO `results` (`id`, `race_id`, `first_name`, `last_name`, `time`, `plac
 --
 
 CREATE TABLE `runners` (
-  `id` int(11) NOT NULL,
+  `runner_id` int(11) NOT NULL,
   `first_name` text NOT NULL,
   `last_name` text NOT NULL,
   `birth_date` date DEFAULT NULL,
   `sex` enum('male','female') NOT NULL,
   `email` text NOT NULL,
   `phone` text,
-  `company` text,
+  `company_id` int(11) DEFAULT NULL,
   `points` int(11) DEFAULT NULL,
   `races` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1722,13 +1711,13 @@ ALTER TABLE `races`
 -- Indexes for table `results`
 --
 ALTER TABLE `results`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`result_id`);
 
 --
 -- Indexes for table `runners`
 --
 ALTER TABLE `runners`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`runner_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -1738,7 +1727,7 @@ ALTER TABLE `runners`
 -- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `races`
 --
@@ -1748,12 +1737,12 @@ ALTER TABLE `races`
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1579;
+  MODIFY `result_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1579;
 --
 -- AUTO_INCREMENT for table `runners`
 --
 ALTER TABLE `runners`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `runner_id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
