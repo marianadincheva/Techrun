@@ -28,7 +28,7 @@ class updateCompanies {
 		];
 		$companyPoints = $this->db->selectFunction('runners', $select, $whereCompanyId);
 		$updateValues = [
-			'points'  => $companyPoints['points'],
+			'points'  => $companyPoints['points'] + $companyPoints['races'],
 			'races'   => $companyPoints['races'],
 			'runners' => $companyPoints['runner_id']
 		];
