@@ -5,9 +5,11 @@ include '../Database.php';
 class companyRegistrationProcess {
 
 private $db;
+private $params;
 
 	public function __construct() {
-		if(!isset($_POST['companyName'], $_POST['email'], $_POST['website'], $_POST['logo'])) {
+		$this->params = $_POST;
+		if(empty($this->params['companyName']) || empty($this->params['email']) || empty($this->params['website'])) {
 			$this->redirect('companyRegistration.php');
 		}
 		$this->db = new Database;
@@ -15,14 +17,31 @@ private $db;
 	}
 
 	private function completeRegistration() {
+		$this->validateParams();
 		$companyInfo = [
-			'name'    => $_POST['companyName'],
-			'email'   => strtolower($_POST['email']),
-			'phone'   => $_POST['phone'],
-			'website' => $_POST['website']
+			'name'    => $this->params['companyName'],
+			'email'   => strtolower($this->params['email']),
+			'phone'   => $this->params['phone'],
+			'website' => $this->params['website']
 		];
 		$this->db->insert('companies', $companyInfo);
 		print "Registration Completed";
+	}
+
+	private function validateParams() {
+		$whereEmail = [
+			0 => [
+				'column' => 'email',
+				'compare'  => '=',
+				'value'  => strtolower($this->params['email'])
+			]
+		];
+		$exists = $this->db->select('companies', ['email'], $whereEmail);
+
+		if($exists) {
+			print "Email already exists!";
+			die;
+		}
 	}
 
 	private function redirect($url) {

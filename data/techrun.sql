@@ -38,6 +38,33 @@ CREATE TABLE `companies` (
   `races` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Схема на данните от таблица `companies`
+--
+
+INSERT INTO `companies` (`company_id`, `name`, `email`, `phone`, `website`, `logo`, `runners`, `points`, `races`) VALUES
+(1, 'TechHuddle', '', '', 'http://www.techhuddle.com/', NULL, 1, 230, 3),
+(2, 'Milestone Systems', '', '', 'https://www.milestonesys.com/company/', NULL, NULL, NULL, NULL),
+(3, 'Receipt Bank', '', '', 'https://www.receipt-bank.com/', NULL, NULL, NULL, NULL),
+(4, 'Global Consulting', '', '', 'http://global.bg/', NULL, NULL, NULL, NULL),
+(5, 'Sofia University', '', '', 'https://www.uni-sofia.bg/index.php', NULL, NULL, NULL, NULL),
+(6, 'Novatel', '', '', 'https://novatel.bg/', NULL, NULL, NULL, NULL),
+(7, 'Astea Solutions', '', '', 'http://www.asteasolutions.com/', NULL, NULL, NULL, NULL),
+(8, 'a2b Trucking', '', '', 'http://a2btrucking.bg/', NULL, NULL, NULL, NULL),
+(9, 'Epam', '', '', 'https://www.epam.com/', NULL, NULL, NULL, NULL),
+(10, 'Musala Soft', '', '', 'http://www.musala.com/bg/', NULL, NULL, NULL, NULL),
+(11, 'Mentor Mate', '', '', 'http://mentormate.bg/', NULL, NULL, NULL, NULL),
+(12, 'Bioderma', '', '', 'http://www.bioderma.bg/', NULL, NULL, NULL, NULL),
+(13, 'IDT', '', '', 'http://www.idt.com/', NULL, NULL, NULL, NULL),
+(14, 'Netpeak', '', '', 'http://netpeak.bg/', NULL, NULL, NULL, NULL),
+(15, 'SkyScanner', '', '', 'http://www.skyscanner.net/', NULL, NULL, NULL, NULL),
+(16, 'Hacker.Works', '', '', 'http://hacker.works/', NULL, NULL, NULL, NULL),
+(17, 'Presitely', '', '', 'http://presitely.com/', NULL, NULL, NULL, NULL),
+(18, 'Imperia Mobile', '', '', 'http://imperiamobile.com/home', NULL, NULL, NULL, NULL),
+(19, 'Sumup', '', '', 'https://sumup.com/', NULL, NULL, NULL, NULL),
+(20, 'Hewlett Packard Enterprise', '', '', 'https://www.hpe.com/us/en/home.html', NULL, NULL, NULL, NULL),
+(21, 'Hewlett Packard Inc', '', '', 'http://www8.hp.com/bg/bg/home.html', NULL, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -1683,13 +1710,20 @@ CREATE TABLE `runners` (
   `first_name` text NOT NULL,
   `last_name` text NOT NULL,
   `birth_date` date DEFAULT NULL,
-  `sex` enum('male','female') NOT NULL,
+  `sex` enum('M','F') NOT NULL,
   `email` text NOT NULL,
   `phone` text,
   `company_id` int(11) DEFAULT NULL,
   `points` int(11) DEFAULT NULL,
   `races` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Схема на данните от таблица `runners`
+--
+
+INSERT INTO `runners` (`runner_id`, `first_name`, `last_name`, `birth_date`, `sex`, `email`, `phone`, `company_id`, `points`, `races`) VALUES
+(1, 'Hristo', 'Tsvetkov', '1994-09-29', 'M', 'dreben_ji_1994@abv.bg', '0884341987', 1, 230, '3');
 
 --
 -- Indexes for dumped tables
@@ -1727,7 +1761,7 @@ ALTER TABLE `runners`
 -- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `races`
 --
@@ -1742,7 +1776,7 @@ ALTER TABLE `results`
 -- AUTO_INCREMENT for table `runners`
 --
 ALTER TABLE `runners`
-  MODIFY `runner_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `runner_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
