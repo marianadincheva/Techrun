@@ -2,7 +2,7 @@
 
 include '../Database.php';
 
-class companyRegistrationProcess {
+class CompanyRegistrationProcess {
 
 private $db;
 private $params;
@@ -25,7 +25,7 @@ private $params;
 			'website' => $this->params['website']
 		];
 		$this->db->insert('companies', $companyInfo);
-		print "Registration Completed";
+		print "Registration Completed!";
 	}
 
 	private function validateParams() {

@@ -1,7 +1,7 @@
 <?php
 include '../Database.php';
 
-class updateCompanies {
+class UpdateCompanies {
 
 	private $db;
 
@@ -11,6 +11,7 @@ class updateCompanies {
 		foreach ($companies as $companyId) {
 			$this->updateSingleCompany($companyId);
 		}
+		print 'Update Finished!';
 	}
 
 	private function updateSingleCompany($companyId) {
@@ -36,6 +37,6 @@ class updateCompanies {
 	}
 }
 
-new updateCompanies();
+new UpdateCompanies();
 
 ?>

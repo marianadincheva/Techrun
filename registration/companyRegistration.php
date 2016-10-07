@@ -11,7 +11,7 @@
 			<a href="companyRegistration.php">Регистрация на фирма</a>
 		</nav>
 		
-		<p>Индивидуална регистрация</p>
+		<p>Регистрация на фирма</p>
 		<form action="companyRegistrationProcess.php" method="post">
 			Име на фирмата/организацията: 
 			<input type="text" name="companyName" value="TechHuddle"><br>

@@ -63,14 +63,14 @@
 		}
 
 		public function sendQuery($query) {
+			$data = [];
 			$result = mysqli_query($this->conn, $query);
 			if (is_object($result)) {
-				$data = [];
 				while ($row = $result->fetch_assoc()) {
 					$data[] = $row;
 				}
-				return $data;
 			}
+			return $data;
 		}
 
 		private function generateWhere($where) {

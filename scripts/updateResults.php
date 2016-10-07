@@ -1,7 +1,7 @@
 <?php
 include '../Database.php';
 
-class updateResults {
+class UpdateResults {
 
 	CONST CSV_FILE_NAME = '';
 
@@ -17,6 +17,7 @@ class updateResults {
 		if (!empty($dbValues)) {
 			$this->db->insert('results', $dbValues);
 		}
+		print "Update Finished!";
 	}
 
 	private function prepareData($races) {
@@ -53,5 +54,5 @@ class updateResults {
 	}
 }
 
-new updateResults();
+new UpdateResults();
 ?>

@@ -1,7 +1,7 @@
 <?php
 include '../Database.php';
 
-class updateRaces {
+class UpdateRaces {
 
 	private $db;
 
@@ -9,6 +9,7 @@ class updateRaces {
 		$this->db = new Database;
 		$races = $this->db->select('races', ['race_id', 'name', 'distance', 'sex']);
 		$this->updateTotalRunners($races);
+		print 'Update Finished!';
 	}
 
 	private function updateTotalRunners($races) {
@@ -26,6 +27,6 @@ class updateRaces {
 	}
 }
 
-new updateRaces();
+new UpdateRaces();
 
 ?>

@@ -1,7 +1,7 @@
 <?php
 include '../Database.php';
 
-class updateRunners {
+class UpdateRunners {
 
 	private $db;
 
@@ -11,6 +11,7 @@ class updateRunners {
 		foreach ($runners as $runner) {
 			$this->updateSingleRunner($runner);
 		}
+		print 'Update Finished!';
 	}
 
 	private function updateSingleRunner($runner) {
@@ -62,6 +63,6 @@ class updateRunners {
 	}
 }
 
-new updateRunners();
+new UpdateRunners();
 
 ?>
