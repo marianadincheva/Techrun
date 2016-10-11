@@ -13,7 +13,7 @@ class GenerateRankings {
 	private static $tableHeaders = [	 
 		'male'    => ['First Name', 'Last Name', 'Points', 'Races'],
 		'female'  => ['First Name', 'Last Name', 'Points', 'Races'],
-		'company' => ['Company', 'Runners', 'Races', 'Points']
+		'company' => ['Company', 'Runners', 'Races ran', 'Points']
 	];
 	private static $sex = [
 		'male'    => 'M',

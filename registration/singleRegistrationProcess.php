@@ -5,16 +5,31 @@ class SingleRegistrationProcess {
 
 	private $db;
 	private $params;
+	private $required   = [
+		'First Name' => 'firstName',
+		'Last Name'  => 'lastName',
+		'Sex'        => 'sex',
+		'Email'      => 'email'
+	];
+	private $backButton = '<input type="button" value="Back" onClick="history.go(-1);">'; //todo : fix this
 
-	public function __construct() {
-		$this->params = $_POST;
-		if(empty($this->params['firstName']) || empty($this->params['lastName']) || empty($this->params['sex']) || empty($this->params['email'])) {
-			$this->redirect('singleRegistration.php');
+	public function __construct($params) {
+		$this->params = $params;
+		$validInput = true;
+		foreach($this->required as $name => $param) {
+			if (empty($this->params[$param])) {
+				$validInput = false;
+				print $name." field is required!".$this->backButton;
+				break;
+			}
 		}
-		$this->db = new Database;
-		$this->completeRegistration();
-		$this->updateCompanyPoints();
-		$this->suggestSimilarities();
+		if ($validInput) {
+			$this->db = new Database;
+			if ($this->completeRegistration()) {
+				$this->updateCompanyPoints();
+				$this->suggestSimilarities();
+			}
+		}
 	}
 
 	private function calculatePoints() {
