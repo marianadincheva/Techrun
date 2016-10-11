@@ -4,16 +4,30 @@ include '../Database.php';
 
 class CompanyRegistrationProcess {
 
-private $db;
-private $params;
-
-	public function __construct() {
-		$this->params = $_POST;
-		if(empty($this->params['companyName']) || empty($this->params['email']) || empty($this->params['website'])) {
-			$this->redirect('companyRegistration.php');
+	private $db;
+	private $params;
+	private $validInput = true;
+	private $required   = [
+		'Company Name' => 'companyName',
+		'Email'        => 'email',
+		'Website'      => 'website',
+	];
+	private $backButton = '<input type="button" value="Back" onClick="history.go(-1);">'; //todo : fix this
+	
+	public function __construct($params) {
+		$this->params = $params;
+		$validInput = true;
+		foreach($this->required as $name => $param) {
+			if (empty($this->params[$param])) {
+				$validInput = false;
+				print "'".$name."' field is required!".$this->backButton;
+				break;
+			}
 		}
-		$this->db = new Database;
-		$this->completeRegistration();
+		if ($validInput) {
+			$this->db = new Database;
+			$this->completeRegistration();
+		}
 	}
 
 	private function completeRegistration() {
@@ -25,7 +39,7 @@ private $params;
 			'website' => $this->params['website']
 		];
 		$this->db->insert('companies', $companyInfo);
-		print "Registration Completed!";
+		print "Registration Completed!".PHP_EOL;
 	}
 
 	private function validateParams() {
@@ -39,16 +53,10 @@ private $params;
 		$exists = $this->db->select('companies', ['email'], $whereEmail);
 
 		if($exists) {
-			print "Email already exists!";
-			die;
+			print "Email already exists!".$this->backButton;
+			return false;
 		}
-	}
-
-	private function redirect($url) {
-		ob_start();
-	    header('Location: '.$url);
-	    ob_end_flush();
-	    die();
+		return true;
 	}
 }
 new companyRegistrationProcess();

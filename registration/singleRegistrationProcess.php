@@ -19,7 +19,7 @@ class SingleRegistrationProcess {
 		foreach($this->required as $name => $param) {
 			if (empty($this->params[$param])) {
 				$validInput = false;
-				print $name." field is required!".$this->backButton;
+				print "'".$name."' field is required!".$this->backButton;
 				break;
 			}
 		}
@@ -215,13 +215,6 @@ class SingleRegistrationProcess {
 				</b> but the email you registered with <b>does not apear</b> in the result lists of those races! If you joined any of them, please contact us using the contact form so we can fix any problem for you.';
 			print $registrationMsg;
 		}
-	}
-
-	private function redirect($url) {
-		ob_start();
-	    header('Location: '.$url);
-	    ob_end_flush();
-	    die();
 	}
 }
 
